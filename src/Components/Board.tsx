@@ -28,7 +28,7 @@ export default function Board() {
     public winner: boolean = false;
     addMove(board: string[], i: number, player: string) {
       const newBoard: string[] = [...board];
-      if (!newBoard[i]) {
+      if (!newBoard[i] && !this.winner) {
         newBoard[i] = player;
         setBoard(newBoard);
       } else console.log("cell");
@@ -47,20 +47,25 @@ export default function Board() {
   const [player, setPlayer] = useState<string>("X");
 
   return (
-    <div
-      className="flex items-center
-    "
-    >
+    <div className="flex items-center">
       <div className="grid grid-cols-[repeat(3,10vw)] grid-rows-[repeat(3,10vw)] w-full h-full">
         {board.map((value: string, index: number) => {
+          game.checkWin(board);
           return (
             <span
               key={index}
-              className={`hover:bg-gray-300 border-4 border-black border-solid text-8xl flex justify-center items-center font-bold ${cellBorders[index]}`}
+              className={`${
+                !game.winner ? "hover:bg-gray-400" : ""
+              } border-4 border-black border-solid text-8xl flex justify-center items-center font-bold ${
+                cellBorders[index]
+              }`}
               onClick={() => {
-                game.addMove(board, index, player);
-                setPlayer(player === "X" ? "O" : "X");
-                game.checkWin(board);
+                if (game.winner) {
+                  return;
+                } else {
+                  game.addMove(board, index, player);
+                  setPlayer(player === "X" ? "O" : "X");
+                }
               }}
             >
               {value}
