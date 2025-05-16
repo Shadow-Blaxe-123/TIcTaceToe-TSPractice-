@@ -3,27 +3,28 @@ import type React from "react";
 
 export default class Game {
     public isGameOver: boolean = false;
-    public whichPlayerWon: string;
-    private setWhichPlayerWon: React.Dispatch<SetStateAction<string>>;
-    public board: string[];
-    private setBoard: React.Dispatch<SetStateAction<string[]>>
+    // public whichPlayerWon: string;
+    // private setWhichPlayerWon: React.Dispatch<SetStateAction<string>>;
+    // public board: string[];
+    // private setBoard: React.Dispatch<SetStateAction<string[]>>
 
-    constructor(board:string[], setboard:React.Dispatch<SetStateAction<string[]>>, whichPlayerWon:string, setWhichPlayerWon:React.Dispatch<SetStateAction<string>>) {
-        this.board = board;
-        this.setBoard = setboard;
-        this.whichPlayerWon = whichPlayerWon;
-        this.setWhichPlayerWon = setWhichPlayerWon;
-    }
+    // constructor(board:string[], setboard:React.Dispatch<SetStateAction<string[]>>, whichPlayerWon:string, setWhichPlayerWon:React.Dispatch<SetStateAction<string>>) {
+    //     this.board = board;
+    //     this.setBoard = setboard;
+    //     this.whichPlayerWon = whichPlayerWon;
+    //     this.setWhichPlayerWon = setWhichPlayerWon;
+    // }
 
-    addMove(i: number, player: string) {
-      const newBoard: string[] = [...this.board];
+    addMove(board: string[], i: number, player: string, setboard:React.Dispatch<SetStateAction<string[]>>) {
+      const newBoard: string[] = [...board];
       if (!newBoard[i] && !this.isGameOver) {
         newBoard[i] = player;
-        this.setBoard(newBoard);
+        // this.setBoard(newBoard);
+        setboard(newBoard);
       } else console.log("cell");
     }
 
-    checkWin() {
+    checkWin(board: string[]) {
       const winCombo: number[][] = [
         // Horizontal
         [0, 1, 2],
@@ -38,13 +39,14 @@ export default class Game {
         [2, 4, 6],
       ];
       winCombo.forEach(([a, b, c]) => {
-        if (this.board[a] !== "" && this.board[a] === this.board[b] && this.board[b] === this.board[c]) {
+        // if (this.board[a] !== "" && this.board[a] === this.board[b] && this.board[b] === this.board[c]) {
+        if (board[a] !== "" && board[a] === board[b] && board[b] === board[c]) {
           this.isGameOver = true;
         //   this.setWhichPlayerWon('Winner is Player' + this.board[a]);
         //   alert(this.whichPlayerWon)
         // this.whichPlayerWon = 'Winner is' + this.board[a]
         // alert(this.whichPlayerWon)
-        } else if (this.board.every(cell => cell !== '')) {
+        } else if (board.every(cell => cell !== '')) {
             this.isGameOver = true;
             // alert(this.whichPlayerWon)
         }

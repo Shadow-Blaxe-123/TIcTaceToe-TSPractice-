@@ -1,15 +1,11 @@
-import type { SetStateAction } from "react";
-import type React from "react";
+import { useState } from "react";
 import type Game from "../gameclass";
 
-export type GameProps = {
-  board: string[];
-  player: string;
+type Props = {
   game: Game;
-  setPlayer: React.Dispatch<SetStateAction<string>>;
 };
 
-export default function Board({ board, player, setPlayer, game }: GameProps) {
+export default function Board({ game }: Props) {
   const cellBorders: string[] = [
     "border-t-0 border-l-0",
     "border-t-0",
@@ -22,11 +18,26 @@ export default function Board({ board, player, setPlayer, game }: GameProps) {
     "border-r-0 border-b-0",
   ];
 
+  const [board, setBoard] = useState<string[]>([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  // const [whichPlayerWon, setWhichPlayeWon] = useState<string>("Its a Draw");
+
+  const [player, setPlayer] = useState<string>("X");
+
   return (
     <div className="flex items-center">
       <div className="grid grid-cols-[repeat(3,10vw)] grid-rows-[repeat(3,10vw)] w-full h-full">
         {board.map((value: string, index: number) => {
-          game.checkWin();
+          game.checkWin(board);
           return (
             <span
               key={index}
@@ -39,7 +50,7 @@ export default function Board({ board, player, setPlayer, game }: GameProps) {
                 if (game.isGameOver) {
                   return;
                 } else {
-                  game.addMove(index, player);
+                  game.addMove(board, index, player, setBoard);
                   setPlayer(player === "X" ? "O" : "X");
                 }
               }}
