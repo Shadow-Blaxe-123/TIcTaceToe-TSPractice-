@@ -15,9 +15,13 @@ function App() {
     "",
     "",
   ]);
+  const [whichPlayerWon, setWhichPlayeWon] = useState<string>("Its a Draw");
 
-  const game = new Game(board, setBoard);
+  const game = new Game(board, setBoard, whichPlayerWon, setWhichPlayeWon);
   const [player, setPlayer] = useState<string>("X");
+  if (game.isGameOver) {
+    alert(game.whichPlayerWon);
+  }
   return (
     <>
       <div className="w-full p-2 text-5xl font-extrabold bg-purple-950">
