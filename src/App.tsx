@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Board from "./Components/Board";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="w-full p-2 text-5xl font-extrabold bg-purple-950">
+        <h1 className="m-2.5 text-amber-100">Tic Tac Toe</h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className="flex justify-center h-screen">
+        {/* TODO: Board */}
+        <div className="w-1/2 flex justify-center items-center">
+          <Board />
+        </div>
+        {/* TODO: Welcome, Turn, Reset & Music btn, dancing gif, leaderboard */}
+        <div className="bg-red-300 p-1 w-1/2 font-black text-6xl m-2">
+          THE CONTROLS
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
