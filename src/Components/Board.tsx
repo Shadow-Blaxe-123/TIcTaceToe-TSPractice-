@@ -25,6 +25,7 @@ export default function Board() {
   ]);
 
   class Game {
+    public winner: boolean = false;
     addMove(board: string[], i: number, player: string) {
       const newBoard: string[] = [...board];
       if (!newBoard[i]) {
@@ -32,9 +33,17 @@ export default function Board() {
         setBoard(newBoard);
       } else console.log("cell");
     }
+
+    checkWin(board: string[]) {
+      console.log(board);
+      if (board[0] !== "" && board[0] === board[1] && board[0] === board[2]) {
+        this.winner = true;
+        console.log("winnner");
+      }
+    }
   }
 
-  const gamme = new Game();
+  const game = new Game();
   const [player, setPlayer] = useState<string>("X");
 
   return (
@@ -49,8 +58,9 @@ export default function Board() {
               key={index}
               className={`hover:bg-gray-300 border-4 border-black border-solid text-8xl flex justify-center items-center font-bold ${cellBorders[index]}`}
               onClick={() => {
-                gamme.addMove(board, index, player);
+                game.addMove(board, index, player);
                 setPlayer(player === "X" ? "O" : "X");
+                game.checkWin(board);
               }}
             >
               {value}
