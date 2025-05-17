@@ -15,6 +15,7 @@ export default class Game {
     setPlayer: React.Dispatch<SetStateAction<string>>,
     setBoard: React.Dispatch<SetStateAction<string[]>>
   ) {
+    // super();
     this.board = board;
     this.setBoard = setBoard;
     this.player = player;

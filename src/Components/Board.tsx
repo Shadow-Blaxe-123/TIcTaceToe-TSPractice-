@@ -26,6 +26,8 @@ Props) {
     "border-r-0 border-b-0",
   ];
 
+  const clickAudio = new Audio("ting.mp3");
+
   return (
     <div className="flex items-center">
       <div className="grid grid-cols-[repeat(3,10vw)] grid-rows-[repeat(3,10vw)] w-full h-full">
@@ -44,6 +46,7 @@ Props) {
                   return;
                 } else {
                   game.addMove(index);
+                  clickAudio.play();
                 }
               }}
             >
