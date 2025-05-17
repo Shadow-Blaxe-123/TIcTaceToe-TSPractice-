@@ -64,4 +64,18 @@ export default class Game {
     this.setBoard(["", "", "", "", "", "", "", "", ""]);
     this.setPlayer("X");
   }
+
+  // makeBotMove() {
+  //   if (this.isGameOver || this.currentPlayer !== "O") return;
+
+  //   for (let i = 0; i < this.board.length; i++) {
+  //     if (this.board[i] === "") {
+  //       this.board[i] = "O";
+  //       this.switchPlayer(); // Assuming this sets currentPlayer = "X"
+  //       break;
+  //     }
+  //   }
+
+  //   this.checkWin(this.board);
+  // }
 }
