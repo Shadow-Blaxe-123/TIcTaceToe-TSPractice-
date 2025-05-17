@@ -1,18 +1,16 @@
 // import { useState } from "react";
-import type React from "react";
+// import type React from "react";
 import type Game from "../gameclass";
-import type { SetStateAction } from "react";
+// import type { SetStateAction } from "react";
 
 type Props = {
   game: Game;
-  player: string;
-  setPlayer: React.Dispatch<SetStateAction<string>>;
+  // player: string;
+  // setPlayer: React.Dispatch<SetStateAction<string>>;
 };
 
 export default function Board({
   game,
-  player,
-  setPlayer,
 }: // board,
 // setBoard,
 Props) {
@@ -45,8 +43,7 @@ Props) {
                 if (game.isGameOver) {
                   return;
                 } else {
-                  game.addMove(index, player);
-                  setPlayer(player === "X" ? "O" : "X");
+                  game.addMove(index);
                 }
               }}
             >
