@@ -1,19 +1,11 @@
-// import { useState } from "react";
-// import type React from "react";
+import { useEffect } from "react";
 import type Game from "../gameclass";
-// import type { SetStateAction } from "react";
 
 type Props = {
   game: Game;
-  // player: string;
-  // setPlayer: React.Dispatch<SetStateAction<string>>;
 };
 
-export default function Board({
-  game,
-}: // board,
-// setBoard,
-Props) {
+export default function Board({ game }: Props) {
   const cellBorders: string[] = [
     "border-t-0 border-l-0",
     "border-t-0",
@@ -27,6 +19,11 @@ Props) {
   ];
 
   const clickAudio = new Audio("ting.mp3");
+  useEffect(() => {
+    setTimeout(() => {
+      game.makeBotMove();
+    }, 500);
+  }, [game, game.player]);
 
   return (
     <div className="flex items-center">
