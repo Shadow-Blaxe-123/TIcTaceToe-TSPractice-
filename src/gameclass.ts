@@ -47,20 +47,29 @@ export default class Game {
   }
 
   // Constantly checking whether the Game should be over.
-  checkWin() {
-    this.winCombo.forEach(([a, b, c]) => {
+
+  // Searches for a winner
+  getWinner(): string | null {
+    for (const [a, b, c] of this.winCombo) {
       if (
         this.board[a] !== "" &&
         this.board[a] === this.board[b] &&
         this.board[b] === this.board[c]
       ) {
-        this.isGameOver = true;
-        this.winningPlayer = "The Winner is " + this.board[a];
-        //   console.log(this.winningPlayer);
-      } else if (this.board.every((cell) => cell !== "")) {
-        this.isGameOver = true;
+        return this.board[a]; // "X" or "O"
       }
-    });
+    }
+
+    return null;
+  }
+  checkWin() {
+    const winner = this.getWinner();
+    if (winner) {
+      this.isGameOver = true;
+      this.winningPlayer = "The Winner is " + winner;
+    } else if (this.board.every((cell) => cell !== "")) {
+      this.isGameOver = true;
+    }
   }
 
   resetBoard() {
@@ -125,18 +134,5 @@ export default class Game {
       }
       return minEval;
     }
-  }
-  getWinner(): string | null {
-    for (const [a, b, c] of this.winCombo) {
-      if (
-        this.board[a] !== "" &&
-        this.board[a] === this.board[b] &&
-        this.board[b] === this.board[c]
-      ) {
-        return this.board[a]; // "X" or "O"
-      }
-    }
-
-    return null; // No winner yet
   }
 }

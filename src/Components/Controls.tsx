@@ -4,13 +4,7 @@ import type Game from "../gameclass";
 type Props = { game: Game };
 
 export default function Controls({ game }: Props) {
-  //   const music = new Audio("music.mp3");
   const [music] = useState(new Audio("music.mp3"));
-  //   const [musicState, setMusicState] = useState<string>("Music ON");
-  //   useEffect(() => {
-  //     music.loop = true;
-  //     music.play();
-  //   }, []);
 
   return (
     <div>
@@ -38,7 +32,6 @@ export default function Controls({ game }: Props) {
         <button
           className="cursor bg-red-500 text-white text-3xl font-extrabold px-5 py-2 m-4 border-4 border-indigo-700 hover:bg-lime-500"
           onClick={() => {
-            // game.resetBoard();
             if (music.paused) {
               music.play();
             } else {

@@ -25,11 +25,9 @@ function App() {
         <h1 className="m-2.5 text-amber-100">Tic Tac Toe</h1>
       </div>
       <div className="flex justify-center h-screen">
-        {/* TODO: Board */}
         <div className="w-1/2 flex justify-center items-center">
           <Board game={game} />
         </div>
-        {/* TODO: Welcome, Turn, Reset & Music btn, dancing gif, leaderboard */}
         <div className="w-1/2 flex justify-center items-center">
           <Controls game={game} />
         </div>
